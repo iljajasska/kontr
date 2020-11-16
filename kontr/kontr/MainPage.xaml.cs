@@ -10,11 +10,10 @@ namespace kontr
 {
     public partial class MainPage : ContentPage
     {
-        Picker picker;
-        Editor editor;
-        DatePicker dpicker;
-        Entry entry;
         TimePicker tpicker;
+        Label lbl;
+        Image img;
+        Entry entry;
         string hh;
         public MainPage()
         {
@@ -32,47 +31,142 @@ namespace kontr
                     new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
                 }
         };
-        picker = new Picker
-            {
-                Title = "Языки"
-            };
-            picker.Items.Add("C#");
-            picker.Items.Add("Python");
-            picker.Items.Add("C++");
-            picker.Items.Add("VisualBasic");
-            picker.Items.Add("Java");
-            gr.Children.Add(picker, 0, 0);
-            picker.SelectedIndexChanged += Picker_SelectedIndexChanged;
-
-            editor = new Editor { Placeholder = "Выбери язык \nпрограммирования" };
-            gr.Children.Add(editor, 1, 0);
-
             tpicker = new TimePicker()
             {
-                Time = new TimeSpan(18, 0, 0)
+                Time = new TimeSpan(0, 0, 0)
             };
             tpicker.PropertyChanged += Tpicker_PropertyChanged;
-            gr.Children.Add(tpicker, 1, 1);
-            entry = new Entry { Text = "Выбери число \nили время" };
-            gr.Children.Add(entry, 0, 1);
+            gr.Children.Add(tpicker, 2, 1);
+            lbl = new Label()
+            {
+                Text = "Я ложусь спать",
+                TextColor = Color.Green,
+                FontSize = 20
+            };
+            gr.Children.Add(lbl, 1, 0);
+            img = new Image { Source = "nol.jpg" };
+            gr.Children.Add(img, 0, 1);
             Content = gr;
         }
-        private void Tpicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
-            {
-                TimeSpan selctTime = tpicker.Time;
-                entry.Text = selctTime.ToString();
-            }
-        }
 
-        private void Dpicker_DateSelected(object sender, DateChangedEventArgs e)
+        private void Tpicker_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            entry.Text = "Твоя дата:\n" + e.NewDate.ToString("G");
-        }
-        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            editor.Text = "Oli valitud: " + picker.Items[picker.SelectedIndex];
+            var time = tpicker.Time.Hours;
+            if (time == 1)
+            {
+                lbl.Text = "Засыпаю";
+                img.Source = "odin.jpg";
+            }
+            else if (time == 2)
+            {
+                lbl.Text = "Уже почти заснул";
+                img.Source = "dva.jpg";
+            }
+            else if (time == 3)
+            {
+                lbl.Text = "Уже сплю";
+                img.Source = "tri.jpg";
+            }
+            else if (time == 4)
+            {
+                lbl.Text = "Долго сплю";
+                img.Source = "chetyre.jpg";
+            }
+            else if (time == 5)
+            {
+                lbl.Text = "Все еще сплю";
+                img.Source = "pyat.jpg";
+            }
+            else if (time == 6)
+            {
+                lbl.Text = "До сих пор сплю";
+                img.Source = "shest.jpg";
+            }
+            else if (time == 7)
+            {
+                lbl.Text = "Просыпаюсь и встаю";
+                img.Source = "sem.jpg";
+            }
+            else if (time == 8)
+            {
+                lbl.Text = "Кушаю и готовлюсь идти в тех";
+                img.Source = "vosem.jpg";
+            }
+            else if (time == 9)
+            {
+                lbl.Text = "Сижу на уроках";
+                img.Source = "devyat.jpg";
+            }
+            else if (time == 10)
+            {
+                lbl.Text = "Все еще сижу на уроках";
+                img.Source = "desyat.jpg";
+            }
+            else if (time == 11)
+            {
+                lbl.Text = "Обедаю в техе";
+                img.Source = "odinatsat.jpg";
+            }
+            else if (time == 12)
+            {
+                lbl.Text = "Снова сижу на уроках";
+                img.Source = "dvenatsat.jpg";
+            }
+            else if (time == 13)
+            {
+                lbl.Text = "Еду домой с учебы";
+                img.Source = "trinatsat.jpg";
+            }
+            else if (time == 14)
+            {
+                lbl.Text = "Кушаю дома";
+                img.Source = "chetirnatsat.jpg";
+            }
+            else if (time == 15)
+            {
+                lbl.Text = "Ложусь отдыхать";
+                img.Source = "petnatsat.jpg";
+            }
+            else if (time == 16)
+            {
+                lbl.Text = "Все еще отдыхаю";
+                img.Source = "shestnatsat.jpg";
+            }
+            else if (time == 17)
+            {
+                lbl.Text = "Иду гулять";
+                img.Source = "semnatsat.jpg";
+            }
+            else if (time == 18)
+            {
+                lbl.Text = "Гуляю";
+                img.Source = "vosemnatsat.jpg";
+            }
+            else if (time == 19)
+            {
+                lbl.Text = "Прихожу домой";
+                img.Source = "devjatnatsat.jpg";
+            }
+            else if (time == 20)
+            {
+                lbl.Text = "Ужинаю";
+                img.Source = "dvatsat.jpg";
+            }
+            else if (time == 21)
+            {
+                lbl.Text = "Иду в душ";
+                img.Source = "dvatsatodin.jpg";
+            }
+            else if (time == 22)
+            {
+                lbl.Text = "Играю в комп";
+                img.Source = "dvatsatdva.jpg";
+            }
+            else if (time == 23)
+            {
+                lbl.Text = "Общаюсь в дискорде";
+                img.Source = "dvatsattri.jpg";
+            }
         }
     }
 }
